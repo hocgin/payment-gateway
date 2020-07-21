@@ -1,0 +1,47 @@
+package in.hocg.payment.gateway.basic.exception;
+
+import in.hocg.payment.gateway.basic.result.Result;
+import in.hocg.payment.gateway.basic.result.ResultCode;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
+
+/**
+ * Created by hocgin on 2020/1/5.
+ * email: hocgin@gmail.com
+ *
+ * @author hocgin
+ */
+@ControllerAdvice
+public class EagleExceptionHandle extends DefaultExceptionHandler {
+
+    @Override
+    public Result<Void> handleException(Exception e) throws Exception {
+        return super.handleException(e);
+    }
+    
+    @ResponseBody
+    @ExceptionHandler(value = MaxUploadSizeExceededException.class)
+    public Result<Void> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
+        final ResultCode resultCode = ResultCode.SERVICE_ERROR;
+        return Result.error(resultCode.getCode(), "上传文件过大");
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public Result<Void> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        final ResultCode resultCode = ResultCode.SERVICE_ERROR;
+        return Result.error(resultCode.getCode(), "缺少必要参数");
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = HttpMessageConversionException.class)
+    public Result<Void> handleHttpMessageConversionException(HttpMessageConversionException e) {
+        final ResultCode resultCode = ResultCode.SERVICE_ERROR;
+        return Result.error(resultCode.getCode(), "参数类型错误");
+    }
+}
