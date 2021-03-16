@@ -14,9 +14,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 @EnableAspectJAutoProxy(exposeProxy = true)
 @SpringBootApplication
-public class AppApplication {
-    
+public class BootApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(AppApplication.class, args);
+        SpringApplication.run(BootApplication.class, args);
     }
 }

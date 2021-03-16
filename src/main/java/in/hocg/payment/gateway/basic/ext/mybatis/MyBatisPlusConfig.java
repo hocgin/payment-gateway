@@ -1,7 +1,7 @@
 package in.hocg.payment.gateway.basic.ext.mybatis;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import in.hocg.payment.gateway.AppApplication;
+import in.hocg.payment.gateway.BootApplication;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @author hocgin
  */
 @Configuration
-@MapperScan(basePackageClasses = AppApplication.class, annotationClass = Mapper.class)
+@MapperScan(basePackageClasses = BootApplication.class, annotationClass = Mapper.class)
 public class MyBatisPlusConfig {
 
     @Bean
